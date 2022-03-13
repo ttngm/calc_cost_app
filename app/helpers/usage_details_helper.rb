@@ -1,0 +1,2 @@
+module UsageDetailsHelper
+end

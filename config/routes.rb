@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root 'calc_cost#index'
+  root 'usage_details#index'
+  resources :usage_details
 end

@@ -1,0 +1,17 @@
+<% @usageAmounts.each do |usageAmount| %>
+<tr>
+  <td>
+    <%= select(usageAmount, :method, {'折半': 0, 'あいか':1, '除外':2}, {selected: usageAmount.method}, { class: 'ui dropdown'}) %>
+    <!-- <select class="ui dropdown">
+      <option value="0">折半</option>
+      <option value="1">あいか</option>
+      <option value="2">除外</option>
+    </select> -->
+  </td>
+  <td><%= usageAmount.usageDate %></td>
+  <td><%= usageAmount.usageStore %></td>
+  <td><%= usageAmount.amount %></td>
+</tr>
+
+
+<% end %>

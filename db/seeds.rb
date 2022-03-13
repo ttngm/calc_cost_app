@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+UsageDetail.create!(year:"2022", month:"1")
+UsageDetail.create!(year:"2022", month:"2")
+UsageDetail.create!(year:"2022", month:"3")
+
+
+UsageDetail.all.each do |usageDetail|
+    usageDetail.usageAmounts.create!(usageDate:"2022/1/1", usageStore:"hoge", amount:10000, method:0)
+    usageDetail.usageAmounts.create!(usageDate:"2022/1/2", usageStore:"hoge", amount:10000, method:1)
+    usageDetail.usageAmounts.create!(usageDate:"2022/1/3", usageStore:"hoge", amount:10000, method:2)
+    usageDetail.usageAmounts.create!(usageDate:"2022/1/4", usageStore:"hoge", amount:10000, method:0)
+end
