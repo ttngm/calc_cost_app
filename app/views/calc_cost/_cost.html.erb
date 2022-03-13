@@ -1,0 +1,84 @@
+<div>
+  <form class="ui form" method="get" action="#">
+    <div class="fields">
+      <div class="two wide field">
+        <label>Year</label>
+        <select class="ui dropdown">
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+        </select>
+      </div>
+      <div class="two wide field">
+        <label>Month</label>
+        <select class="ui dropdown" onchange="submit(this.form)">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+
+<table class="ui teal table">
+  <thead>
+    <tr>
+      <th class="one wide"></th>
+      <th>利用日</th>
+      <th>利用店名</th>
+      <th>支払い金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <select class="ui dropdown">
+          <option value="0">折半</option>
+          <option value="1">あいか</option>
+          <option value="2">除外</option>
+        </select>
+      </td>
+      <td>xxxx/xx/xx</td>
+      <td>hoge</td>
+      <td>10000</td>
+    </tr>
+    <tr>
+      <td>
+        <select class="ui dropdown">
+          <option value="0">折半</option>
+          <option value="1">あいか</option>
+          <option value="2">除外</option>
+        </select>
+      </td>
+      <td>xxxx/xx/xx</td>
+      <td>hoge</td>
+      <td>10000</td>
+    </tr>
+    <tr>
+      <td>
+        <select class="ui dropdown">
+          <option value="0">折半</option>
+          <option value="1">あいか</option>
+          <option value="2">除外</option>
+        </select>
+      </td>
+      <td>xxxx/xx/xx</td>
+      <td>hoge</td>
+      <td>10000</td>
+    </tr>
+  </tbody>
+</table>
+
+<button class="ui teal button">Calculate</button>
+<div class="ui tag large label">100000</div>
