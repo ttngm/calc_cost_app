@@ -51,9 +51,11 @@ gem "bootsnap", require: false
 gem 'semantic-ui-sass'
 gem 'sass-rails'
 gem 'htmlbeautifier'
+
+gem 'selenium-webdriver'
 gem 'webpacker'
 gem 'turbolinks'
-gem 'selenium-webdriver'
+gem 'jbuilder'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

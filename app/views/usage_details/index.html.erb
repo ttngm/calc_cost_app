@@ -1,46 +1,23 @@
+<div class="ui menu">
+    <div class="item"><h2 class="">CalcApp</h2></div>
+    <div class="right menu">
+        <%= link_to '一覧', '/', class:'item'%>
+        <%= link_to '新規作成', new_usage_detail_path, class:'item'%>
+    </div>
+</div>
 <div class="ui container">
   <h1 class="ui huge header">
-    CalcApp
-    <div class="sub header">for calculating the monthly living expenses</div>
+    明細一覧
   </h1>
-  <div>
-    <div class="fields">
-      <form class="ui form" action="#">
-        <div class="fields">
-            <div class="two wide field">
-        <label>Year</label>
-        <%= select(@usageDetail, :year, {'2020': 2020, '2021':2021,'2022':2022},
-        {selected: @usageDetail.year}, { class: 'ui dropdown', name:'year'}) %>
+  <div class="ui container segment"">
+        <div class="ui relaxed horizontal list">
+            <% @usageDetails.each do |usageDetail| %>
+            <div class="item">
+              <div class="content">
+                <%= link_to usageDetail.year+'年'+usageDetail.month+'月', usageDetail %>
+              </div>
             </div>
-            <div class="two wide field">
-
-        <label>Month</label>
-        <%= select(@usageDetail, :month, {'1': 1, '2':2, '3':3, '4':4, '5':5,
-        '6':6, '7':7, '8':8, '9':9, '10':10, '11':11, '12':12}, {selected:
-        @usageDetail.month}, { class: 'ui dropdown', name:'month'}) %>
+            <% end %>
         </div>
-
-        </div>
-        <button class="ui button" type="submit">取得</button>
-
-      </form>
-    </div>
   </div>
-
-  <table class="ui teal table">
-    <thead>
-      <tr>
-        <th class="one wide"></th>
-        <th>利用日</th>
-        <th>利用店名</th>
-        <th>支払い金額</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render 'usage_details/usageAmount' %>
-    </tbody>
-  </table>
-
-  <button class="ui teal button">Calculate</button>
-  <div class="ui tag large label">100000</div>
 </div>

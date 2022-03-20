@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_13_092435) do
     t.string "usageDate"
     t.string "usageStore"
     t.integer "amount"
-    t.integer "method"
+    t.integer "division"
     t.integer "usage_detail_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

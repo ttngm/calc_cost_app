@@ -1,3 +1,3 @@
 class UsageDetail < ApplicationRecord
-    has_many :usageAmounts
+    has_many :usageAmounts, dependent: :destroy
 end

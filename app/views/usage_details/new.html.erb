@@ -1,0 +1,16 @@
+
+<div>
+<%= form_with(model: @usageDetail, local: true) do |f| %>
+<div class="field">
+  <%= f.label :year %>
+  <%= f.text_field :year, class: 'form-control' %>
+</div>
+<div class="field">
+
+  <%= f.label :month %>
+  <%= f.text_field :month, class: 'form-control' %>
+</div>
+
+  <%= f.submit "Save", class: "ui button" %>
+<% end %>
+</div>
