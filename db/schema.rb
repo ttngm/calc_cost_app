@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_13_092435) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_20_133012) do
   create_table "usage_amounts", force: :cascade do |t|
     t.string "usageDate"
     t.string "usageStore"
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_13_092435) do
     t.string "month"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sum"
   end
 
   add_foreign_key "usage_amounts", "usage_details"

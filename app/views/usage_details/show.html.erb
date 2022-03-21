@@ -1,95 +1,83 @@
 <div class="ui menu">
-  <div class="item"><h2 class="">CalcApp</h2></div>
+  <div class="item">
+    <i class="bordered inverted teal yen sign icon "></i>
+  </div>
   <div class="right menu">
     <%= link_to '一覧', '/', class:'item'%>
-    <a class="item">新規作成</a>
+    <%= link_to '新規作成', new_usage_detail_path, class:'item'%>
   </div>
 </div>
 <div class="ui container">
   <div class="ui grid">
     <div class="four column row">
       <div class="left floated column">
-        <h1 class="ui header">
+        <h1 class="ui huge header">
           <%= @usageDetail.year %>年<%= @usageDetail.month %>月
         </h1>
       </div>
     </div>
   </div>
-
   <div id="sumSegment" class="ui segment">
-
     <div class="four column row">
-      <div>合計金額<span id="sum" class="">100000</span> 円</div>
-
+      <div>合計金額<span id="sum"
+          class=""><%= number_to_currency(@usageDetail.sum , format:"%u%n", unit:"", precision:0)%></span> 円</div>
     </div>
   </div>
-
-
-    <div id="action" class="ui secondary menu">
-      <div class="item">
-        <button id="calcBtn" class="ui teal button ">計算</button>
-      </div>
-      <div class="right menu">
-
-        <div class="item">
-
-      <%= form_with(url: '/usage_details/getRakuten', local: true) do |f| %>
+  <div id="action" class="ui secondary menu">
+    <div class="item">
+      <%= form_with(url: '/usage_details/calculate') do |f| %>
       <%= f.hidden_field :id, :value => @usageDetail.id %>
-      <%= f.submit "楽天カード明細取得", class: "ui button" %>
-    <% end %>
-        </div>
-        <div class="item">
-
-      <%= form_with(model: @usageDetail, method:'delete') do |f| %>
-      <%= f.submit "明細削除", class: "ui button" %>
-     <% end %>
-
-        </div>
+      <%= f.submit "計算", class: "ui teal button" %>
+      <% end %>
     </div>
+    <div class="right menu">
+      <div class="item">
+        <%= form_with(url: '/usage_details/getRakuten', local: true) do |f| %>
+        <%= f.hidden_field :id, :value => @usageDetail.id %>
+        <%= f.submit "楽天カード明細取得", class: "ui button" %>
+        <% end %>
+      </div>
+      <div class="item">
+        <%= form_with(model: @usageDetail, method:'delete') do |f| %>
+        <%= f.submit "明細削除", class: "ui button" %>
+        <% end %>
+      </div>
     </div>
-
+  </div>
   <table class="ui teal table">
     <thead>
       <tr>
-        <th class="one wide"></th>
+        <th class="two wide"></th>
         <th>利用日</th>
         <th>利用店名</th>
         <th>支払い金額</th>
         <th></th>
       </tr>
     </thead>
-    <tbody>
-        <%= render 'usage_details/usageAmount' %>
+    <tbody id="usageTable">
+      <%= render 'usage_details/usageAmount' %>
     </tbody>
   </table>
   <div class="pdb40px">
-
     <%= form_with(model: @usageDetail, class:'ui form') do |f| %>
     <div class="fields">
+      <div class="two wide field">
+        <%= f.select :division, {'分類1': 0, '分類2':1, '除外':2}, {}, class:"ui fluid dropdown" %>
 
-    <div class="two wide field">
-    <%= f.text_field :division, class: 'text', placeholder: '分類' %>
-    </div>
-    <div class="two wide field">
-  
-    <%= f.text_field :usageDate, class: 'text', placeholder: '利用日' %>
-    </div>
-    <div class="seven wide field">
-  
-    <%= f.text_field :usageStore, class: 'text', placeholder: '利用店舗' %>
-    </div>
-    <div class="three wide field">
-  
-    <%= f.text_field :amount, class: 'text', placeholder: '金額' %>
-    </div>
-  
-    <div class="two wide field">
-  
-      <%= f.submit "Add", class: "ui button" %>
       </div>
-
-      <% end %>
-
+      <div class="two wide field">
+        <%= f.text_field :usageDate, class: 'text', placeholder: '利用日' %>
+      </div>
+      <div class="seven wide field">
+        <%= f.text_field :usageStore, class: 'text', placeholder: '利用店舗' %>
+      </div>
+      <div class="three wide field">
+        <%= f.text_field :amount, class: 'text', placeholder: '金額' %>
+      </div>
+      <div class="two wide field">
+        <%= f.submit "追加", class: "ui button" %>
+      </div>
     </div>
+    <% end %>
   </div>
 </div>

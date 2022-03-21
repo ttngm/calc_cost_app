@@ -6,6 +6,8 @@
     "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
+    "@prettier/plugin-ruby": "^2.0.0",
+    "prettier": "^2.6.0",
     "webpack-dev-server": "^3"
   }
 }

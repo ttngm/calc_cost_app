@@ -1,17 +1,18 @@
 <% @usageAmounts.each do |usageAmount| %>
 <tr>
   <td>
-    <%= select(usageAmount, :division, {'折半': 0, 'あいか':1, '除外':2}, {selected: usageAmount.division}, { class: 'ui dropdown'}) %>
-    <!-- <select class="ui dropdown">
-      <option value="0">折半</option>
-      <option value="1">あいか</option>
-      <option value="2">除外</option>
-    </select> -->
+    <%= form_with(model: usageAmount, class:'ui form') do |f| %>
+    <%= f.select(:division, {'分類1': 0, '分類2':1, '除外':2}, {}, onchange: "this.form.submit();", class:"ui fluid dropdown")%>
+    <% end %>
   </td>
   <td><%= usageAmount.usageDate %></td>
   <td><%= usageAmount.usageStore %></td>
   <td><%= usageAmount.amount %></td>
-  <td><%= link_to "削除", usageAmount, method: :delete%></td>
+  <td class="right aligned">
+    <%= link_to  usageAmount, method: :delete do %>
+    <i class="trash alternate outline icon grey large"></i>
+    <% end %>
+    </td>
 </tr>
 
 

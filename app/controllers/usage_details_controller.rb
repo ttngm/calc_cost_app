@@ -1,4 +1,6 @@
 class UsageDetailsController < ApplicationController
+  after_action :updateSum, only: [:update, :getRakuten]
+
   def index
     @usageDetails = UsageDetail.all;
   end
@@ -28,8 +30,8 @@ class UsageDetailsController < ApplicationController
   end
 
   def destroy
-    UsageDetail.find(params[:id]).destroy
-
+    @usageDetail = UsageDetail.find(params[:id])
+    @usageDetail.destroy
     redirect_to usage_details_url
   end
 
@@ -41,12 +43,27 @@ class UsageDetailsController < ApplicationController
     redirect_to @usageDetail
   end
 
+  def calculate
+    @usageDetail = UsageDetail.find(params[:id])
+    updateSum()
+    redirect_to @usageDetail
+  end
+
   private
     def usage_detail_params
-      params.require(:usage_detail).permit(:year, :month, usage_amount_attributes:[:usageDate, :usageStore, :amount, :method])
+      params.require(:usage_detail).permit(:year, :month, usage_amount_attributes:[:usageDate, :usageStore, :amount, :division])
     end
 
     def usage_amount_params
       params.require(:usage_detail).permit(:division, :usageDate, :usageStore, :amount )
+    end
+
+  protected
+    def updateSum()
+      # 金額計算
+      usage_details_service = UsageDetailsService.new
+      sum = usage_details_service.calculate(@usageDetail)
+      # 計算結果で更新
+      @usageDetail.update(sum: sum)
     end
 end

@@ -1,16 +1,28 @@
-
-<div>
-<%= form_with(model: @usageDetail, local: true) do |f| %>
-<div class="field">
-  <%= f.label :year %>
-  <%= f.text_field :year, class: 'form-control' %>
+<div class="ui menu">
+  <div class="item">
+    <i class="bordered inverted teal yen sign icon "></i>
+  </div>
+  <div class="right menu">
+    <%= link_to '一覧', '/', class:'item'%>
+    <%= link_to '新規作成', new_usage_detail_path, class:'item'%>
+  </div>
 </div>
-<div class="field">
-
-  <%= f.label :month %>
-  <%= f.text_field :month, class: 'form-control' %>
-</div>
-
-  <%= f.submit "Save", class: "ui button" %>
-<% end %>
-</div>
+<div class="ui container">
+  <h1 class="ui huge header">
+    新規作成
+  </h1>
+  <div>
+    <%= form_with(model: @usageDetail, class:'ui form') do |f| %>
+    <div class="fields">
+      <div class="two wide field">
+        <%= f.text_field :year, class: 'text', placeholder: '年'%>
+      </div>
+      <div class="two wide field">
+        <%= f.text_field :month, class: 'text', placeholder: '月' %>
+      </div>
+      <div class="two wide field">
+        <%= f.submit "作成", class: "ui button" %>
+      </div>
+      <% end %>
+    </div>
+  </div>

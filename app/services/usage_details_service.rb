@@ -5,8 +5,8 @@ require "selenium-webdriver"
 class UsageDetailsService
     def downloadCsv(year, month)
 
-        user = ''
-        pass = ''
+        user = Rails.application.credentials.rakuten[:id]
+        pass = Rails.application.credentials.rakuten[:pass]
 
         dl_folder = '/Users/hirokishinagawa/rakuten'
 
@@ -84,5 +84,23 @@ class UsageDetailsService
             end
             usageDetail.usageAmounts.create!(usageDate:usageDate, usageStore:udageStore, amount:amount, division:0)
         end
+    end
+
+    def calculate(usageDetail)
+        sum = 0
+        usageDetail.usageAmounts.each do |usageAmount|
+            division = usageAmount.division
+            amount = usageAmount.amount
+            if division == 0
+                # 分類1は4割追加
+                sum += amount.to_i*0.4
+            elsif division == 1
+                # 分類2はそのまま追加
+                sum += amount.to_i
+            elsif division == 2
+                # 除外は追加しない
+            end
+        end
+        return sum
     end
 end
